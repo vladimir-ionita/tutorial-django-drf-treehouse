@@ -12,7 +12,8 @@ class ReviewSerializer(serializers.ModelSerializer):
             'id',
             'course',
             'name',
-            'review',
+            'email',
+            'comment',
             'rating',
             'created_at'
         )
