@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
+from rest_framework import viewsets
 
 from . import models
 from . import serializers
@@ -40,3 +41,13 @@ class RetrieveUpdateDestroyReview(generics.RetrieveUpdateDestroyAPIView):
             course_id=self.kwargs.get('course_pk'),
             pl=self.kwargs.get('pk')
         )
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = models.Course.objects.all()
+    serializer_class = serializers.CourseSerializer
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = models.Review.objects.all()
+    serializer_class = serializers.ReviewSerializer
