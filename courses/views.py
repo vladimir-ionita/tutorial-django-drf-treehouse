@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework import generics
 
 from . import models
@@ -20,6 +22,12 @@ class ListCreateReview(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(course_id=self.kwargs.get('course_pk'))
+
+    def perform_create(self, serializer):
+        course = get_object_or_404(
+            models.Course, pk=self.kwargs.get('course_pk')
+        )
+        serializer.save(course=course)
 
 
 class RetrieveUpdateDestroyReview(generics.RetrieveUpdateDestroyAPIView):
