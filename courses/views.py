@@ -33,3 +33,10 @@ class ListCreateReview(generics.ListCreateAPIView):
 class RetrieveUpdateDestroyReview(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
+
+    def get_object(self):
+        return get_object_or_404(
+            self.get_queryset(),
+            course_id=self.kwargs.get('course_pk'),
+            pl=self.kwargs.get('pk')
+        )
