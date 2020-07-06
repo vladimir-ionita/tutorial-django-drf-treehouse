@@ -6,7 +6,7 @@ from . import models
 from . import serializers
 
 
-class CourseList(APIView):
+class CourseListCreate(APIView):
     def get(self, request, format=None):
         courses = models.Course.objects.all()
         serializer = serializers.CourseSerializer(courses, many=True)
