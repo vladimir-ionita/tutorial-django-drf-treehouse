@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from . import models
 from . import serializers
+from . import permissions as custom_permissions
 
 
 class ListCreateCourse(generics.ListCreateAPIView):
@@ -49,6 +50,7 @@ class RetrieveUpdateDestroyReview(generics.RetrieveUpdateDestroyAPIView):
 
 class CourseViewSet(viewsets.ModelViewSet):
     permission_classes = (
+        custom_permissions.IsSuperUser,
         permissions.DjangoModelPermissions
     )
     queryset = models.Course.objects.all()
