@@ -60,9 +60,9 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(mixins.CreateModelMixin,
-                   mixins.RetrieveModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   viewsets.GenericViewSet):
+                    mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    viewsets.GenericViewSet):
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
